@@ -1,25 +1,25 @@
 on:
- workflow_dispatch: 
+  workflow_dispatch: 
 
 jobs: 
- agent-task: 
-   runs-on: ubuntu-latest
-   steps:
-     - name: Branch Checkout
-       uses: actions/checkout@v4
-     - name: Node Env Setup
-       uses: actions/setup-node@v4 
-       with: 
-         node-version: '18'
-       env: 
-        COPILOT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
-     - name: Agent Task - Summarize recent changes
-       run: |
-         npx @github/copilot-cli 
-         -p "Summarize recent changes in this repository" 
-         --no-ask-user (Optional) 
-     - name: Agent Task - Summarize recent changes    
-       run: | 
-        npx @github/copilot-cli  
-        -p "Review code and dependencies for vulnerabilities and create issue" 
-        --no-ask-user     
+  agent-task: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Branch Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup GitHub Copilot CLI
+        run: |
+          npm install -g @github/copilot-cli
+        env:
+          COPILOT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Agent Task - Summarize recent changes
+        run: |
+          gh copilot suggest -t shell \
+            "Summarize recent changes in this repository"
+      
+      - name: Agent Task - Review for vulnerabilities
+        run: |
+          gh copilot suggest -t shell \
+            "Review code and dependencies for vulnerabilities and create issue"
