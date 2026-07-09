@@ -16,10 +16,8 @@ jobs:
       
       - name: Agent Task - Summarize recent changes
         run: |
-          gh copilot suggest -t shell \
-            "Summarize recent changes in this repository"
+           copilot -p "Summarize recent changes in this repository" --no-ask-user
       
       - name: Agent Task - Review for vulnerabilities
         run: |
-          gh copilot suggest -t shell \
-            "Review code and dependencies for vulnerabilities and create issue"
+          copilot -p "Review code and dependencies for vulnerabilities and create issue" --no-ask-user
