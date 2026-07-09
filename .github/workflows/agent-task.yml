@@ -4,6 +4,8 @@ on:
 jobs: 
   agent-task: 
     runs-on: ubuntu-latest
+    env:
+     COPILOT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Branch Checkout
         uses: actions/checkout@v4
@@ -11,9 +13,7 @@ jobs:
       - name: Setup GitHub Copilot CLI
         run: |
           npm install -g @github/copilot
-        env:
-          COPILOT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
+          
       - name: Agent Task - Summarize recent changes
         run: |
            copilot -p "Summarize recent changes in this repository" --no-ask-user
