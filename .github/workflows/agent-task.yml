@@ -4,7 +4,7 @@ on:
 permissions: 
    contents: read
    issues: write
-
+   copilot-requests: write 
 jobs: 
   agent-task: 
     runs-on: ubuntu-latest
