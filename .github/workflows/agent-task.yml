@@ -10,7 +10,7 @@ jobs:
       
       - name: Setup GitHub Copilot CLI
         run: |
-          npm install -g @github/copilot-cli
+          npm install -g @github/copilot
         env:
           COPILOT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
