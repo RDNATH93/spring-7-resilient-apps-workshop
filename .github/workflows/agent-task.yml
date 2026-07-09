@@ -1,6 +1,10 @@
 on:
   workflow_dispatch: 
 
+permissions: 
+   contents: read
+   issues: write
+
 jobs: 
   agent-task: 
     runs-on: ubuntu-latest
